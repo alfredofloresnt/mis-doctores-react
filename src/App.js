@@ -9,7 +9,6 @@ function App() {
     <div className="App">
         <HeaderView/>
         <HomeView titulo="Título" nombre="alfredo"/>
-        <HomeView titulo="Hola mundo 2"/>
         <FooterView/>
     </div>
   );
