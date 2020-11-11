@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 
-const footer = (props) => {
+const Footer = (props) => {
     const { titulo, nombre } = props
     const [ doctores,  setDoctores] = useState([{name: "Prueba"}])
     const getDoctors = () => {
@@ -9,11 +9,10 @@ const footer = (props) => {
     }
     
     return(
-        <div className="home">
-            <h1>{doctores[0].name} {nombre}</h1>
-            <Button onClick={getDoctors}>Test</Button>
+        <div className="footer container-fluid">
+            <h3>Este es el footer</h3>
         </div>
     )
 }
 
-export default footer
+export default Footer

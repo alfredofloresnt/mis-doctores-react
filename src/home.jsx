@@ -10,7 +10,7 @@ const Home = (props) => {
     
     return(
         <div className="home">
-            <h1>{doctores[0].name} {nombre}</h1>
+            <h1>{doctores[0].name} {titulo}</h1>
             <Button onClick={getDoctors}>Test</Button>
         </div>
     )

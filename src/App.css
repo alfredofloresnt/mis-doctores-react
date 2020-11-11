@@ -5,3 +5,16 @@
 .home h1 {
   color: red;
 }
+
+.header {
+  background-color: aquamarine;
+  height: 60px; 
+}
+
+.footer{
+  background-color: aquamarine;
+  height: 80px; 
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;
+}
