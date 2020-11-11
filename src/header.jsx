@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Boton from './button'
 
@@ -12,16 +18,18 @@ const Header = (props) => {
     return(
         <div className="header row">
             <div className="col-8">
-                <h3>Mis Doctores </h3>
+                <Link to="/"><h3 >Mis Doctores </h3></Link>
             </div>
             <div className="col" >
-               <Boton nombre ="Agregar doctor" ruta="/agrega"/>     
+                
+               <Link to="/agregar_doctor">Agregar doctor</Link>     
             </div>
-            <div className="col" ruta = "/contacto">
-                <Boton nombre = "Contacto"/>
+            <div className="col" >
+                <Link to="/contacto">Contacto</Link>
+                
             </div>
-            <div className="col" ruta = "login">
-                <Boton nombre = "Log In"/>
+            <div className="col" >
+                <Link to="/login">Log In</Link>
             </div>
         </div>
     )
