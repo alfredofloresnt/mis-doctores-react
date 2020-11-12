@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
-//import Buscador from '/componentes/buscador';
+//import Buscador from './componentes/buscador';
 
 const Home = (props) => {
     const { titulo, nombre } = props
