@@ -18,3 +18,11 @@
   bottom: 0; 
   width: 100%;
 }
+
+.buscador {
+  padding-top: 50px;
+}
+
+.bg-light {
+  background-color: #5cffca!important ;
+}
