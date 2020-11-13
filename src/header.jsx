@@ -4,33 +4,31 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+} from "react-router-dom";
+import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Boton from './button'
 
 const Header = (props) => {
     const { titulo, nombre } = props
-    const [ doctores,  setDoctores] = useState([{name: "Header"}])
+    const [doctores, setDoctores] = useState([{ name: "Header" }])
     const getDoctors = () => {
         console.log("test")
     }
-    
-    return(
-        <div className="header row">
-            <div className="col-8">
-                <Link to="/"><h3 >Mis Doctores </h3></Link>
-            </div>
-            <div className="col" >
-                
-               <Link to="/agregar_doctor">Agregar doctor</Link>     
-            </div>
-            <div className="col" >
-                <Link to="/contacto">Contacto</Link>
-                
-            </div>
-            <div className="col" >
-                <Link to="/login">Log In</Link>
-            </div>
+
+    return (
+        <div>
+            <Navbar className="bg-light" expand="lg">
+                <Navbar.Brand href="#home">Mis Doctores</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link><Link to={'/'}>Home</Link></Nav.Link>
+                        <Nav.Link>Lista de doctores</Nav.Link>
+                        <Nav.Link>Agregar doctor</Nav.Link>
+                        <Nav.Link><Link to={'/contacto'}>Contacto</Link></Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         </div>
     )
 }

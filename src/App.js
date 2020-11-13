@@ -31,7 +31,6 @@ function App() {
           <Route exact path = "/doctor"><Detalledr/></Route>
         </Switch>
         
-        <FooterView/>
       </Router>
         
     </div>

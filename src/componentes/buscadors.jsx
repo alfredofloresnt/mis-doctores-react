@@ -1,20 +1,38 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import React, { useState, Fragment } from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
+import { Button, Form } from 'react-bootstrap';
 
 const Buscador = (props) => {
-    const { titulo, nombre } = props
-    const [ doctores,  setDoctores] = useState([{name: "Prueba"}])
+
     const getDoctors = () => {
         console.log("test")
     }
-    
-    return(
-        <div className="row">
-                <div className="col-2"></div>
-                <div className="col-6" ><input className="form-control form-control-lg"></input></div>
-                <div className="col-2"><Button variant = "outline-primary">Buscar</Button></div>
-                <div className="col-2"></div>
+    console.log(props.doctores)
+    return (
+        <div className="buscador row">
+            <div className="col-10">
+                <Form.Group>
+                    <Typeahead
+                        onInputChange={props.onChagangeSearch}
+                        onChange={a => props.onChagangeSearch(a[0])}
+                        id="basic-typeahead-single"
+                        labelKey={option => `${option.firstName} ${option.lastName}`}
+                        options={props.doctores}
+                        placeholder={props.placeholder}
+                        size={"large"}
+                    />
+                </Form.Group>
             </div>
+            <div className="col-2">
+                <Button className="btn-lg" style={{ width: "100%" }}>Buscar {' '}
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                    </svg>
+                </Button>
+            </div>
+
+        </div>
     )
 }
 
