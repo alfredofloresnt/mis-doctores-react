@@ -26,3 +26,11 @@
 .bg-light {
   background-color: #5cffca!important ;
 }
+
+.nav-link {
+  cursor: pointer;
+}
+
+.form-control-lg {
+  border-radius: 50px !important;
+}

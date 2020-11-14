@@ -1,19 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { getDoctorsList } from './api.js'
+import { getDoctorsList, getSearchDoctor } from './api.js'
+import { useHistory } from "react-router-dom";
 import Buscador from './componentes/buscadors'
 const Home = (props) => {
-    const { titulo, nombre } = props
+    let history = useHistory()
     const [doctores, setDoctores] = useState([])
+    const [selectedDoctor, setSelectedDoctor] = useState("")
+    const [ activeTab, setActiveTab] = useState(1)
 
-    const onChagangeSearch = (data) => {
+    const onChangeSearch = (data) => {
+        setSelectedDoctor(data)
+        getDoctorsList("?name=" + data).then(res => res.json()).then(res => setDoctores(res.doctors))
+    }
+
+    const onChangeSearchHospital = (data) => {
         console.log(data)
         getDoctorsList("?name=" + data).then(res => res.json()).then(res => setDoctores(res.doctors))
+    }
+
+    const onSearch = () => {
+        if (activeTab == 1) {
+            console.log(selectedDoctor)
+            getSearchDoctor("/doctor?name="+selectedDoctor).then(res => res.json()).then(res =>  history.push("/busqueda"))
+        }
     }
 
     useEffect(() => {
         getDoctorsList("?name=").then(res => res.json()).then(res => setDoctores(res.doctors))
     }, [])
+
+    let buscador;
+    if (activeTab == 1) {
+        buscador = <Buscador onChagangeSearch={onChangeSearch} doctores={doctores} onSearch={onSearch} placeholder="Buscar doctor"/>
+    } else if (activeTab == 2){
+        buscador = <Buscador onChagangeSearch={onChangeSearchHospital} doctores={doctores} onSearch={onSearch} placeholder="Buscar hospital"/>
+    } else {
+        buscador = <Buscador onChagangeSearch={onChangeSearchHospital} doctores={doctores} onSearch={onSearch} placeholder="Buscar especialidad"/>
+    }
 
     return (
         <div className="home container">
@@ -28,19 +52,19 @@ const Home = (props) => {
             </div>
             <div className="row">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active">Buscar por doctor</a>
+                    <li class="nav-item" onClick={()=>{setActiveTab(1)}}>
+                        <a class={"nav-link " + (activeTab == 1 ? 'active' : '')}>Buscar por doctor</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Buscar por hospital</a>
+                    <li class="nav-item" onClick={()=>{setActiveTab(2)}}>
+                        <a class={"nav-link " + (activeTab == 2 ? 'active' : '')} >Buscar por hospital</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Buscar por especialidad</a>
+                    <li class="nav-item" onClick={()=>{setActiveTab(3)}}>
+                        <a class={"nav-link " + (activeTab == 3 ? 'active' : '')}>Buscar por especialidad</a>
                     </li>
                 </ul>
             </div>
-            <Buscador onChagangeSearch={onChagangeSearch} doctores={doctores} placeholder="Buscar doctor"/>
-
+            { buscador }
+            
 
         </div>
     )

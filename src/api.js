@@ -11,3 +11,7 @@ let GET = {
 export const getDoctorsList = (data) => {
     return fetch(host + '/doctor' + data, GET )
 }
+
+export const getSearchDoctor = (data) => {
+    return fetch(host + '/search' + data, GET )
+}
