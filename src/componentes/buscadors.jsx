@@ -7,17 +7,36 @@ const Buscador = (props) => {
     const getDoctors = () => {
         console.log("test")
     }
-    console.log(props.doctores)
+    console.log(props.data)
+
+    const valueByTab = (a) => {
+        if (props.activeTab == 1) {
+            if (a[0] && a[0].firstName) {
+                props.onChagangeSearch(a[0].firstName + " " + a[0].lastName)
+            }
+        } else {
+            props.onChagangeSearch(a[0].name)
+        }
+    }
+
+    const labelByTab = (option) => {
+        if (props.activeTab == 1) {
+            return (`${option.firstName} ${option.lastName}`)
+        } else {
+            return(option.name)
+        }
+    }
+
     return (
         <div className="buscador row">
             <div className="col-10">
                 <Form.Group>
                     <Typeahead
                         onInputChange={props.onChagangeSearch}
-                        onChange={a => {if (a[0] && a[0].firstName) props.onChagangeSearch(a[0].firstName + " " + a[0].lastName)}}
+                        onChange={ valueByTab }
                         id="basic-typeahead-single"
-                        labelKey={option => `${option.firstName} ${option.lastName}`}
-                        options={props.doctores}
+                        labelKey={ labelByTab }
+                        options={props.data}
                         placeholder={props.placeholder}
                         size={"large"}
                     />

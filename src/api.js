@@ -15,3 +15,19 @@ export const getDoctorsList = (data) => {
 export const getSearchDoctor = (data) => {
     return fetch(host + '/search' + data, GET )
 }
+
+export const getHospitalsList = (data) => {
+    return fetch(host + '/hospital' + data, GET )
+}
+
+export const getSearchHospital = (data) => {
+    return fetch(host + '/search' + data, GET )
+}
+
+export const getSpecialtiesList = (data) => {
+    return fetch(host + '/specialty' + data, GET )
+}
+
+export const getSearchSpecialty = (data) => {
+    return fetch(host + '/search' + data, GET )
+}
