@@ -16,7 +16,7 @@ const Detalle = (props) => {
 
                 </div>
                 <div className = "col-3">
-                    <IdyNombre titulo= "Nombre del Doctor" nombre ="Oscar Hernandez"/>
+                    <IdyNombre titulo= "Nombre del Doctor" nombre ="Juan Cabello Valles"/>
                     <IdyNombre titulo= "Especialidad" nombre ="Cirjuano plastico"/>
                     <IdyNombre titulo= "Hospital" nombre ="San Jose, Monterrey, N.L"/>
                 </div>
@@ -29,10 +29,21 @@ const Detalle = (props) => {
                 </div>
 
             </div>
-            
+            <br></br>
+            <br></br>
             <div className = "row">
                 <div className = "col-3"></div>
-                <div className = "col-6"></div>
+                <div className = "col-6">
+                    <h4>Agrega un comentario:</h4>
+                    <div className = "cartacomentario">
+                        <h5>Tu nombre:</h5>
+                        <input></input>
+                        <h5>Calificacion:</h5>
+                        <input></input>
+                        <h5>Comentarios:</h5>
+                        <input></input>
+                    </div>
+                </div>
                 <div className = "col-3"></div>
             </div>
         </div>
