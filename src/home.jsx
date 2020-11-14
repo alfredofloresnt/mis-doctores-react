@@ -22,7 +22,7 @@ const Home = (props) => {
     const onSearch = () => {
         if (activeTab == 1) {
             console.log(selectedDoctor)
-            getSearchDoctor("/doctor?name="+selectedDoctor).then(res => res.json()).then(res =>  history.push("/busqueda"))
+            getSearchDoctor("/doctor?name="+selectedDoctor).then(res => res.json()).then(res =>  history.push('/busqueda', res))
         }
     }
 
