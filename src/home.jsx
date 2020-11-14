@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { getDoctorsList, getSearchDoctor } from './api.js'
+import { getHospitalsList, getSearchHospital} from './api.js'
+import { getSpecialtiesList, getSearchSpecialty} from './api.js'
 import { useHistory } from "react-router-dom";
 import Buscador from './componentes/buscadors'
 const Home = (props) => {
     let history = useHistory()
     const [doctores, setDoctores] = useState([])
+    const [hospitals, setHospitals] = useState([])
+    const [specialties, setSpecialties] = useState([])
     const [selectedDoctor, setSelectedDoctor] = useState("")
+    const [selectedHospital, setSelectedHospital] = useState("")
+    const [selectedSpecialty, setSelectedSpecialty] = useState("")
     const [ activeTab, setActiveTab] = useState(1)
 
     const onChangeSearch = (data) => {
@@ -16,27 +22,36 @@ const Home = (props) => {
 
     const onChangeSearchHospital = (data) => {
         console.log(data)
-        getDoctorsList("?name=" + data).then(res => res.json()).then(res => setDoctores(res.doctors))
+        setSelectedHospital(data)
+        getHospitalsList("?name=" + data).then(res => res.json()).then(res => setHospitals(res.hospitals))
+    }
+
+    const onChangeSearchSpecialty = (data) => {
+        console.log(data)
+        setSelectedSpecialty(data)
+        getSpecialtiesList("?name=" + data).then(res => res.json()).then(res => setSpecialties(res.specialties))
     }
 
     const onSearch = () => {
         if (activeTab == 1) {
             console.log(selectedDoctor)
             getSearchDoctor("/doctor?name="+selectedDoctor).then(res => res.json()).then(res =>  history.push('/busqueda', res))
+        } else if (activeTab == 2) {
+            console.log(selectedHospital)
+            getSearchHospital("/hospital?name=" + selectedHospital).then(res => res.json()).then(res => history.push('/busqueda', res))
+        } else {
+            console.log(selectedSpecialty)
+            getSearchSpecialty("/specialty?name=" + selectedSpecialty).then(res => res.json()).then(res => history.push('/busqueda', res))
         }
     }
 
-    useEffect(() => {
-        getDoctorsList("?name=").then(res => res.json()).then(res => setDoctores(res.doctors))
-    }, [])
-
     let buscador;
     if (activeTab == 1) {
-        buscador = <Buscador onChagangeSearch={onChangeSearch} doctores={doctores} onSearch={onSearch} placeholder="Buscar doctor"/>
+        buscador = <Buscador onChagangeSearch={onChangeSearch} data={doctores} onSearch={onSearch} activeTab={activeTab} placeholder="Buscar doctor"/>
     } else if (activeTab == 2){
-        buscador = <Buscador onChagangeSearch={onChangeSearchHospital} doctores={doctores} onSearch={onSearch} placeholder="Buscar hospital"/>
+        buscador = <Buscador onChagangeSearch={onChangeSearchHospital} data={hospitals} onSearch={onSearch} activeTab={activeTab} placeholder="Buscar hospital"/>
     } else {
-        buscador = <Buscador onChagangeSearch={onChangeSearchHospital} doctores={doctores} onSearch={onSearch} placeholder="Buscar especialidad"/>
+        buscador = <Buscador onChagangeSearch={onChangeSearchSpecialty} data={specialties} onSearch={onSearch} activeTab={activeTab} placeholder="Buscar especialidad"/>
     }
 
     return (
