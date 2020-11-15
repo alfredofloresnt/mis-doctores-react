@@ -1,16 +1,48 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { login } from './api';
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
-    const { titulo, nombre } = props
-    const [ doctores,  setDoctores] = useState([{name: "Prueba"}])
-    const getDoctors = () => {
-        console.log("test")
+    let history = useHistory()
+    const [ username, setUsername] = useState(); 
+    const [ password, setPassword] = useState();
+
+    const onLogin = () => {
+        login({
+            username: username,
+            password: password
+        }).then(res=> res.json()).then(res => {
+            if (res.admin){
+                props.login()
+                history.push("/");
+            } else {
+                // Mostrar modal de error
+            }
+        })
     }
-    
-    return(
+
+    return (
         <div className="container-fluid">
-            <h3>Log In</h3>
+            <div>
+                <Form>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control placeholder="Enter email" onChange={(a)=>{setUsername(a.target.value)}}/>
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" onChange={(a)=>{setPassword(a.target.value)}}/>
+                    </Form.Group>
+                    <Button variant="primary" onClick={onLogin}>
+                        Submit
+                    </Button>
+                </Form>
+            </div>
         </div>
     )
 }

@@ -53,3 +53,14 @@ export const createDoctor = (data) => {
     POST.body = JSON.stringify(data);
     return fetch(host + '/doctor/create', POST)
 }
+
+export const login = (data) => {
+    POST.body = JSON.stringify(data);
+    return fetch(host + '/login', POST)
+}
+
+
+export const deleteDoctor = (data) => {
+    POST.body = JSON.stringify(data);
+    return fetch(host + '/doctor/delete', POST)
+}
