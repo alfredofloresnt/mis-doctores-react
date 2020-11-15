@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap';
 import {withRouter} from 'react-router-dom';
+import { getSearchDoctor } from './api.js'
 
 const Doctores = (props) => {
-    console.log("aaa", props.location.state.result)
+    const [doctors, setDoctors] = useState([])
+    useEffect(()=>{
+        if (  props.location.state &&  props.location.state.result){
+            setDoctors(props.location.state.result)
+        } else {
+            getSearchDoctor("/doctor?name=").then(res => res.json()).then(res =>  setDoctors(res.result))
+        }
+    }, [])
 
-    let doctorsList = props.location.state.result.map((doctor)=>{
+    console.log(doctors)
+    let doctorsList = doctors.map((doctor)=>{
         return(
             <tr>
                 <td>{doctor.firstName}</td>

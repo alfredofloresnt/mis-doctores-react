@@ -23,12 +23,13 @@ function App() {
       <Router>
         <HeaderView/>
         <Switch>
-          <Route exact path = "/"><HomeView titulo="Título" nombre="alfredo"/></Route>
-          <Route exact path = "/contacto"><Contacto/></Route>
-          <Route exact path = "/login"><Login/></Route>
-          <Route exact path = "/agregar_doctor"><Agrega/></Route>
-          <Route exact path = "/busqueda"><Doctores/></Route>
-          <Route exact path = "/doctor/:idDoctor"><Detalledr/></Route>
+          <Route exact path="/"><HomeView titulo="Título" nombre="alfredo"/></Route>
+          <Route exact path="/contacto"><Contacto/></Route>
+          <Route exact path="/login"><Login/></Route>
+          <Route exact path="/agregar-doctor"><Agrega/></Route>
+          <Route exact path="/busqueda"><Doctores/></Route>
+          <Route exact path="/doctor/:idDoctor"><Detalledr/></Route>
+          <Route exact path="/login"></Route>
         </Switch>
         
       </Router>

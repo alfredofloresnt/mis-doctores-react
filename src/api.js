@@ -44,7 +44,12 @@ export const getDoctorProfile = (data) => {
     return fetch(host + '/doctor/info' + data, GET)
 }
 
-export const postDoctorComment = (data) =>{
+export const postDoctorComment = (data) => {
     POST.body = JSON.stringify(data);
     return fetch(host + '/comment/create', POST)
+}
+
+export const createDoctor = (data) => {
+    POST.body = JSON.stringify(data);
+    return fetch(host + '/doctor/create', POST)
 }
