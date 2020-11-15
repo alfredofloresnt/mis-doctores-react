@@ -1,50 +1,98 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
-import IdyNombre from "./idyNombre"
+import React, { useEffect, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { getDoctorProfile } from './api';
+import { useParams } from 'react-router-dom';
+import profileImage from './img/profile.png';
+import addCommentImage from './img/addButton.png';
+import iconOff from './img/iconOff.png';
+import iconActive from './img/iconActive.png'
+import Rating from 'react-rating';
+import { postDoctorComment } from './api'
 
 const Detalle = (props) => {
-    const { titulo, nombre } = props
-    const [ doctores,  setDoctores] = useState([{name: "Prueba"}])
-    const getDoctors = () => {
-        console.log("test")
+    const { titulo, nombre } = props;
+    const [doctor, setDoctor] = useState({ info: [], comments: [] });
+    const params = useParams();
+    const [show, setShow] = useState(false);
+    const [ rate, setRate ] = useState(0);
+    const [ name, setName ] = useState(null);
+    const [ typedComment, setTypedComment ] = useState(null);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const idDoctor = params.idDoctor;
+
+    const handleSave = () => {
+        postDoctorComment({
+            comment: {
+                name: name,
+                score: rate,
+                comment: typedComment,
+                idDoctor: idDoctor
+            }
+        }).then(()=>{
+            getDoctorProfile("?idDoctor=" + idDoctor).then(res => res.json()).then(res => setDoctor(res.doctor))
+        });
+        handleClose();
+
     }
-    
-    return(
-        <div className="container-fluid">
-            <div className = "row">
-                <div className = "col-3">
 
-                </div>
-                <div className = "col-3">
-                    <IdyNombre titulo= "Nombre del Doctor" nombre ="Juan Cabello Valles"/>
-                    <IdyNombre titulo= "Especialidad" nombre ="Cirjuano plastico"/>
-                    <IdyNombre titulo= "Hospital" nombre ="San Jose, Monterrey, N.L"/>
-                </div>
-                <div className = "col-3">
-                    <IdyNombre titulo= "Calificacion" nombre ="X/X"/>
-                    <IdyNombre titulo= "Telefono" nombre ="(000)000-00-00"/>
-                </div>
-                <div className = "col-3">
+    useEffect(() => {
+        console.log(idDoctor)
+        getDoctorProfile("?idDoctor=" + idDoctor).then(res => res.json()).then(res => setDoctor(res.doctor))
+    }, [])
 
-                </div>
+    const doctorInfo = doctor.info;
+    const comments = doctor.comments.map(comment => {
+        return (
+            <div className="col-lg-2 card">
+                <p><strong>{comment.name}</strong></p>
+                <p>{comment.comment}</p>
+                <span>{comment.score}</span>
+            </div>
+        )
+    });
+
+    return (
+        <div className="profile">
+            <div className="col-lg-12" style={{ textAlign: "center" }} className="profile-info">
+                <img src={profileImage} alt="" width={150} />
+                <h2>{doctorInfo.firstname} {doctorInfo.lastname}</h2>
+                <h4>{doctorInfo.specialty}</h4>
+                <h4>{doctorInfo.hospital}</h4>
+            </div>
+            <div>
+
+                <img src={addCommentImage} width={100} onClick={handleShow} />
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Agregar calificacion</Modal.Title>
+
+                    </Modal.Header>
+                    <Modal.Body>
+                        <input class="form-control" type="text" placeholder="Nombre (Si lo dejas vacio tu nombre sera Anonimo)" onChange={(a)=>{setName(a.target.value)}}/>
+                        <Rating
+                            emptySymbol={<img src={iconOff} width={32} />}
+                            fullSymbol={<img src={iconActive} width={32} />}
+                            onChange={val=>{setRate(val)}}
+                        />
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios" onChange={(a)=>{setTypedComment(a.target.value)}}></textarea>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                        <Button variant="primary" onClick={handleSave}>
+                            Guardar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
-            <br></br>
-            <br></br>
-            <div className = "row">
-                <div className = "col-3"></div>
-                <div className = "col-6">
-                    <h4>Agrega un comentario:</h4>
-                    <div className = "cartacomentario">
-                        <h5>Tu nombre:</h5>
-                        <input></input>
-                        <h5>Calificacion:</h5>
-                        <input></input>
-                        <h5>Comentarios:</h5>
-                        <input></input>
-                    </div>
+            <div>
+                <div className="row">
+                    {comments}
                 </div>
-                <div className = "col-3"></div>
+                
             </div>
         </div>
     )

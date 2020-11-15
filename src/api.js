@@ -7,6 +7,14 @@ let GET = {
     }
 }
 
+let POST = {
+	method: 'POST',
+	headers: {
+	Accept: 'application/json',
+	'Content-Type': 'application/json',
+	},
+};
+
 
 export const getDoctorsList = (data) => {
     return fetch(host + '/doctor' + data, GET )
@@ -30,4 +38,13 @@ export const getSpecialtiesList = (data) => {
 
 export const getSearchSpecialty = (data) => {
     return fetch(host + '/search' + data, GET )
+}
+
+export const getDoctorProfile = (data) => {
+    return fetch(host + '/doctor/info' + data, GET)
+}
+
+export const postDoctorComment = (data) =>{
+    POST.body = JSON.stringify(data);
+    return fetch(host + '/comment/create', POST)
 }

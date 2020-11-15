@@ -28,7 +28,7 @@ function App() {
           <Route exact path = "/login"><Login/></Route>
           <Route exact path = "/agregar_doctor"><Agrega/></Route>
           <Route exact path = "/busqueda"><Doctores/></Route>
-          <Route exact path = "/doctor"><Detalledr/></Route>
+          <Route exact path = "/doctor/:idDoctor"><Detalledr/></Route>
         </Switch>
         
       </Router>

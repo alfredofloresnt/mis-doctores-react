@@ -37,3 +37,16 @@
 .form-control-lg {
   border-radius: 50px !important;
 }
+
+.profile-info {
+  background: rgb(91,199,178);
+  background: linear-gradient(0deg, rgba(91,199,178,1) 0%, rgba(3,185,243,1) 100%);
+  padding: 30px;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.51);
+}
+
+.card {
+  -webkit-box-shadow: 5px 5px 15px -8px #000000; 
+box-shadow: 5px 5px 15px -8px #000000;
+}
