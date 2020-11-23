@@ -17,18 +17,19 @@ import {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
 function App() {
   const [isLogged, setIsLogged] = useState(false)
-  const login = () => {
+  const [token, setToken] = useState(null)
+  const login = (token) => {
     setIsLogged(true)
+    setToken(token)
   }
   return (
     <div className="App">
       <Router>
         <HeaderView/>
         <Switch>
-          <Route exact path="/"><HomeView titulo="Título" nombre="alfredo"/></Route>
+          <Route exact path="/"><HomeView token = {token} titulo="Título" nombre="alfredo" isLogged={isLogged} /></Route>
           <Route exact path="/contacto"><Contacto/></Route>
           <Route exact path="/login"><Login login={login}/></Route>
           <Route exact path="/agregar-doctor"><Agrega/></Route>

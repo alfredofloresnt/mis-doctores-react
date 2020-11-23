@@ -64,3 +64,8 @@ export const deleteDoctor = (data) => {
     POST.body = JSON.stringify(data);
     return fetch(host + '/doctor/delete', POST)
 }
+
+export const getOverview = (data) => {
+    GET.headers.authorization = data;
+    return fetch(host + '/overview', GET)
+}
