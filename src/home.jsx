@@ -4,7 +4,9 @@ import { getDoctorsList, getSearchDoctor } from './api.js'
 import { getHospitalsList, getSearchHospital} from './api.js'
 import { getSpecialtiesList, getSearchSpecialty} from './api.js'
 import { useHistory } from "react-router-dom";
-import Buscador from './componentes/buscadors'
+import Buscador from './componentes/buscadors';
+import Dashboard from './componentes/Dashboard';
+
 const Home = (props) => {
     let history = useHistory()
     const [doctores, setDoctores] = useState([])
@@ -56,7 +58,11 @@ const Home = (props) => {
 
     return (
         <div className="home container">
-
+            {props.isLogged? 
+            <div>
+                <Dashboard token={props.token} />
+            </div>
+            : null}
             <div className="row">
                 <div className="col-xs-12">
                     <p>

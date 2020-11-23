@@ -48,3 +48,12 @@
   -webkit-box-shadow: 5px 5px 15px -8px #000000; 
 box-shadow: 5px 5px 15px -8px #000000;
 }
+
+.card-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card-body {
+  text-align: center;
+}

@@ -14,7 +14,7 @@ const Login = (props) => {
             password: password
         }).then(res=> res.json()).then(res => {
             if (res.admin){
-                props.login()
+                props.login(res.admin)
                 history.push("/");
             } else {
                 // Mostrar modal de error
