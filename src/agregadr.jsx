@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Buscador from './componentes/buscadors';
 import { createDoctor } from './api';
 import { getHospitalsList, getSpecialtiesList} from './api.js'
+import { useHistory } from "react-router-dom";
 
 const AgregaDr = (props) => {
     const { titulo, nombre } = props
@@ -13,6 +14,7 @@ const AgregaDr = (props) => {
     const [hospital, setHospital] = useState(null);
     const [specialtyList, setSpecialtyList] = useState([]);
     const [hospitalList, setHospitalList] = useState([]);
+    let history = useHistory()
     const onCreateDoctor = () => {
         createDoctor({
             doctor: {
@@ -21,7 +23,7 @@ const AgregaDr = (props) => {
                 specialty: specialty,
                 hospital: hospital,
             }
-        })
+        }).then(()=> history.push('/busqueda'))
     }
     
     const onChangeSearchHospital = (data) => {
