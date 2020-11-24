@@ -12,7 +12,7 @@ var allowCrossDomain = function(req, res, next) {
 
 // Add headers
 app.use(allowCrossDomain);
-app.use(express.static('public'))
+app.use(express.static('build'))
 
 
 
