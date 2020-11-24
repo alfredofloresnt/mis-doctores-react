@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link} from 'react-router-dom';
 import { getSearchDoctor, deleteDoctor } from './api.js'
 
 const Doctores = (props) => {
@@ -30,7 +30,7 @@ const Doctores = (props) => {
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                 </svg></button></td> : null}
-                <td>{doctor.firstName}</td>
+                <td><Link to={'/doctor/'+ doctor.idDoctor}>{doctor.firstName}</Link></td>
                 <td>{doctor.lastName}</td>
                 <td>{doctor.specialty}</td>
                 <td>{doctor.hospital}</td>
@@ -40,7 +40,9 @@ const Doctores = (props) => {
     })
     return (
         <div className="container-fluid">
-            <h1>Lista de Doctores</h1>
+            <div style={{textAlign: 'center', padding: 40}}>
+                <h2>Lista de Doctores</h2>
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr>

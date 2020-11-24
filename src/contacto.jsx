@@ -9,19 +9,19 @@ const Contacto = (props) => {
     }
     
     return(
-        <div className="container-fluid">
-            <h3>Contactos(Programadores):</h3>
+        <div className="contacto container-fluid">
+            <h2>Contacto:</h2>
             <br></br>
             <br></br>
             <div className="row">
                 <div className="col">
                     <h4>Oscar Lopez</h4>
-                    <p>Desarrollador FrontEnd</p>
+                    <p>Desarrollador</p>
                     <p>https://github.com/OLopezE</p>
                 </div>
                 <div className="col">
                     <h4>Andres Orozco</h4>
-                    <p>Desarrollador BackEnd</p>
+                    <p>Desarrollador</p>
                     <p>https://github.com/OLopezE</p>
                 </div>
             </div>
@@ -30,12 +30,12 @@ const Contacto = (props) => {
             <div className="row">
                 <div className="col">
                     <h4>Alfredo Flores</h4>
-                    <p>Desarrollador BackEnd</p>
+                    <p>Desarrollador</p>
                     <p>https://github.com/OLopezE</p>
                 </div>
                 <div className="col">
                     <h4>Omar Hernandez</h4>
-                    <p>Desarrollador FrontEnd</p>
+                    <p>Desarrollador</p>
                     <p>https://github.com/OLopezE</p>
                 </div>
             </div>

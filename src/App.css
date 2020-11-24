@@ -2,6 +2,11 @@
   
 }
 
+body {
+  background-image: url('./img//papyrus.png');
+  background-repeat: repeat;
+}
+
 .home h1 {
   color: #474B4E;
 }
@@ -21,11 +26,6 @@
 
 .cartacomentario{
   background-color: #a4d0cc;
-}
-
-
-.bg-light {
-  background-color: #5cffca!important ;
 }
 
 .nav-link {
@@ -55,5 +55,13 @@ box-shadow: 5px 5px 15px -8px #000000;
 }
 
 .card-body {
+  text-align: center;
+}
+
+.agregar-doctor, .form-control {
+  margin-bottom: 10px;
+}
+
+.contacto {
   text-align: center;
 }

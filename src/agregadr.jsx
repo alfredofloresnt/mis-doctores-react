@@ -37,9 +37,12 @@ const AgregaDr = (props) => {
     }
     
     return(
-        <div className="container-fluid">
-            <div>
-                <div>
+        <div className="agregar-doctor container-fluid">
+            <div style={{textAlign: 'center', padding: 40}}>
+                <h2>Agregar Doctor</h2>
+            </div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <div style={{width: 500}}>
                     <input class="form-control" type="text" placeholder="Nombre del doctor" onChange={(a)=>{setFirstName(a.target.value)}}/>
                     <input class="form-control" type="text" placeholder="Apellido del doctor" onChange={(a)=>{setLastName(a.target.value)}}/>
                     <Buscador data={specialtyList} activeTab={3} placeholder="Especialidad" onChangeSearch={onChangeSearchSpecialty}/>

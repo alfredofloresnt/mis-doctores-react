@@ -15,7 +15,7 @@ const Detalle = (props) => {
     const params = useParams();
     const [show, setShow] = useState(false);
     const [ rate, setRate ] = useState(0);
-    const [ name, setName ] = useState(null);
+    const [ name, setName ] = useState('Anonimo');
     const [ typedComment, setTypedComment ] = useState(null);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -44,10 +44,10 @@ const Detalle = (props) => {
     const doctorInfo = doctor.info;
     const comments = doctor.comments.map(comment => {
         return (
-            <div className="col-lg-2 card">
+            <div className="col-lg-2 card" style={{padding: 30, margin: 20}}>
                 <p><strong>{comment.name}</strong></p>
                 <p>{comment.comment}</p>
-                <span>{comment.score}</span>
+                <span>Calificación: {comment.score} / 5</span>
             </div>
         )
     });
@@ -61,8 +61,10 @@ const Detalle = (props) => {
                 <h4>{doctorInfo.hospital}</h4>
             </div>
             <div>
-
-                <img src={addCommentImage} width={100} onClick={handleShow} />
+                <div style={{textAlign: 'center', margin: 30, cursor: 'pointer'}}>
+                    <img src={addCommentImage} width={100} onClick={handleShow} />
+                </div>
+                
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Agregar calificacion</Modal.Title>
@@ -71,8 +73,9 @@ const Detalle = (props) => {
                     <Modal.Body>
                         <input class="form-control" type="text" placeholder="Nombre (Si lo dejas vacio tu nombre sera Anonimo)" onChange={(a)=>{setName(a.target.value)}}/>
                         <Rating
-                            emptySymbol={<img src={iconOff} width={32} />}
-                            fullSymbol={<img src={iconActive} width={32} />}
+                            emptySymbol={<img src={iconOff} width={50} />}
+                            fullSymbol={<img src={iconActive} width={50} />}
+                            initialRating={rate}
                             onChange={val=>{setRate(val)}}
                         />
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios" onChange={(a)=>{setTypedComment(a.target.value)}}></textarea>
