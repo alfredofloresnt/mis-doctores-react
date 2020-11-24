@@ -12,7 +12,9 @@ var allowCrossDomain = function(req, res, next) {
 
 // Add headers
 app.use(allowCrossDomain);
-app.use(express.static('build'))
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 
 
