@@ -25,7 +25,6 @@ const Header = (props) => {
                         <Nav.Link><Link to={'/'}>Home</Link></Nav.Link>
                         <Nav.Link><Link to={'/busqueda'}>Lista de doctores</Link></Nav.Link>
                         <Nav.Link><Link to={'/agregar-doctor'}>Agregar Doctor</Link></Nav.Link>
-                        <Nav.Link><Link to={'/contacto'}>Contacto</Link></Nav.Link>
                         <Nav.Link><Link to={'/login'}>Login</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

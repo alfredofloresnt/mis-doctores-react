@@ -14,9 +14,9 @@ const Detalle = (props) => {
     const [doctor, setDoctor] = useState({ info: [], comments: [] });
     const params = useParams();
     const [show, setShow] = useState(false);
-    const [ rate, setRate ] = useState(0);
-    const [ name, setName ] = useState('Anonimo');
-    const [ typedComment, setTypedComment ] = useState(null);
+    const [rate, setRate] = useState(0);
+    const [name, setName] = useState('Anonimo');
+    const [typedComment, setTypedComment] = useState(null);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const idDoctor = params.idDoctor;
@@ -29,7 +29,7 @@ const Detalle = (props) => {
                 comment: typedComment,
                 idDoctor: idDoctor
             }
-        }).then(()=>{
+        }).then(() => {
             getDoctorProfile("?idDoctor=" + idDoctor).then(res => res.json()).then(res => setDoctor(res.doctor))
         });
         handleClose();
@@ -44,7 +44,7 @@ const Detalle = (props) => {
     const doctorInfo = doctor.info;
     const comments = doctor.comments.map(comment => {
         return (
-            <div className="col-lg-2 card" style={{padding: 30, margin: 20}}>
+            <div className="col-lg-2 card" style={{ padding: 30, margin: 20 }}>
                 <p><strong>{comment.name}</strong></p>
                 <p>{comment.comment}</p>
                 <span>Calificación: {comment.score} / 5</span>
@@ -54,46 +54,34 @@ const Detalle = (props) => {
 
     return (
         <div className="profile">
-            <ul class="circles">
-            <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-            <div className="col-lg-12" style={{ textAlign: "center", width: 550, borderRadius: 35 }} className="profile-info">
-                <img src={profileImage} alt="" width={150} />
-                <h2>{doctorInfo.firstname} {doctorInfo.lastname}</h2>
-                <h2>Calificacion: {doctorInfo.average}</h2>
-                <h4>{doctorInfo.specialty}</h4>
-                <h4>{doctorInfo.hospital}</h4>
-            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="col-lg-12" style={{ textAlign: "center", width: 550, borderRadius: 35 }} className="profile-info">
+                    <img src={profileImage} alt="" width={150} />
+                    <h2>{doctorInfo.firstname} {doctorInfo.lastname}</h2>
+                    <h2>Calificacion: {doctorInfo.average}</h2>
+                    <h4>{doctorInfo.specialty}</h4>
+                    <h4>{doctorInfo.hospital}</h4>
+                </div>
             </div>
             <div>
-                <div style={{textAlign: 'center', margin: 30, cursor: 'pointer'}}>
+                <div style={{ textAlign: 'center', margin: 30, cursor: 'pointer' }}>
                     <img src={addCommentImage} width={100} onClick={handleShow} />
                 </div>
-                
+
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Agregar calificacion</Modal.Title>
 
                     </Modal.Header>
                     <Modal.Body>
-                        <input class="form-control" type="text" placeholder="Nombre (Si lo dejas vacio tu nombre sera Anonimo)" onChange={(a)=>{setName(a.target.value)}}/>
+                        <input class="form-control" type="text" placeholder="Nombre (Si lo dejas vacio tu nombre sera Anonimo)" onChange={(a) => { setName(a.target.value) }} />
                         <Rating
                             emptySymbol={<img src={iconOff} width={50} />}
                             fullSymbol={<img src={iconActive} width={50} />}
                             initialRating={rate}
-                            onChange={val=>{setRate(val)}}
+                            onChange={val => { setRate(val) }}
                         />
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios" onChange={(a)=>{setTypedComment(a.target.value)}}></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios" onChange={(a) => { setTypedComment(a.target.value) }}></textarea>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
@@ -110,7 +98,7 @@ const Detalle = (props) => {
                 <div className="row">
                     {comments}
                 </div>
-                
+
             </div>
         </div>
     )
