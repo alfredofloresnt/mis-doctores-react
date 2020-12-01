@@ -36,9 +36,8 @@ function App() {
           <Route exact path="/busqueda" ><Doctores isLogged={isLogged}/></Route>
           <Route exact path="/doctor/:idDoctor"><Detalledr/></Route>
         </Switch>
-        
+        <FooterView/>
       </Router>
-        
     </div>
   );
 }
