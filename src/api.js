@@ -1,4 +1,4 @@
-const host = 'http://localhost:4000';
+const host = 'http://13.65.191.137';
 
 let GET = {
     method: 'GET',

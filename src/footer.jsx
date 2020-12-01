@@ -16,7 +16,6 @@ const Footer = (props) => {
           <div className="col-md-6 col-xs-12 col-lg-3">
             <ui className="list-unstyled">
             <li>Oscar Lopez</li>
-              <li>Desarrollador</li>
               <li>https://github.com/OLopezE</li>
             </ui>
           </div>
@@ -24,24 +23,22 @@ const Footer = (props) => {
           <div className="col-md-6 col-xs-12 col-lg-3">
             <ui className="list-unstyled">
               <li>Andres Orozco</li>
-              <li>Desarrollador</li>
-              <li>https://github.com/OLopezE</li>
+              <li>https://github.com/castorenandres</li>
             </ui>
           </div>
           {/* Column3 */}
           <div className="col-md-6 col-xs-12 col-lg-3">
             <ui className="list-unstyled">
                 <li>Alfredo Flores</li>
-              <li>Desarrollador</li>
-              <li >https://github.com/OLopezE</li>
+
+              <li >https://github.com/alfredofloresnt</li>
             </ui>
           </div>
           {/* Column4 */}
           <div className="col-md-6 col-xs-12 col-lg-3">
             <ui className="list-unstyled">
                  <li>Omar Hernandez</li>
-              <li>Desarrollador</li>
-              <li>https://github.com/OLopezE</li>
+              <li>https://github.com/Oswaldoitc</li>
             </ui>
           </div>
         </div>
