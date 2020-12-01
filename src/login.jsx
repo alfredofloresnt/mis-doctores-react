@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import { login } from './api';
 import { useHistory } from "react-router-dom";
 
@@ -7,6 +7,7 @@ const Login = (props) => {
     let history = useHistory()
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    const [show, setShow] = useState(false);
 
     const onLogin = () => {
         login({
@@ -18,7 +19,11 @@ const Login = (props) => {
                 history.push("/");
             } else {
                 // Mostrar modal de error
+                
             }
+        }).catch(error => {
+            console.log(error)
+            setShow(true)
         })
     }
 
@@ -26,6 +31,11 @@ const Login = (props) => {
         <div className="container-fluid login">
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div style={{ width: 500 }}>
+                    {show? 
+                    <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                        <Alert.Heading>Usuario o contraseña incorrecto</Alert.Heading>
+                    </Alert>
+                    : null}
                     <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Usuario</Form.Label>
