@@ -54,11 +54,26 @@ const Detalle = (props) => {
 
     return (
         <div className="profile">
-            <div className="col-lg-12" style={{ textAlign: "center" }} className="profile-info">
+            <ul class="circles">
+            <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div className="col-lg-12" style={{ textAlign: "center", width: 550, borderRadius: 35 }} className="profile-info">
                 <img src={profileImage} alt="" width={150} />
                 <h2>{doctorInfo.firstname} {doctorInfo.lastname}</h2>
+                <h2>Calificacion: {doctorInfo.average}</h2>
                 <h4>{doctorInfo.specialty}</h4>
                 <h4>{doctorInfo.hospital}</h4>
+            </div>
             </div>
             <div>
                 <div style={{textAlign: 'center', margin: 30, cursor: 'pointer'}}>
